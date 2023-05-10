@@ -1,0 +1,73 @@
+<%- include("../partials/head.ejs") %>
+<body>
+    <%- include("../partials/nav.ejs") %>
+    <form action="/register">
+        <h2>Register</h2>
+        <label for="firstName">First name:</label>
+        <input type="text" name="firstName" required />
+        <div class="firstName error"></div>
+      
+        <label for="lastName">Last name:</label>
+        <input type="text" name="lastName" required />
+        <div class="lastName error"></div>
+      
+        <label for="email">Email:</label>
+        <input type="text" name="email" required />
+        <div class="email error"></div>
+      
+        <label for="password">Password:</label>
+        <input type="password" name="password" required />
+        <div class="password error"></div>
+        <button>Register</button>
+      </form>
+      
+      <script>
+        const form = document.querySelector('form');
+        const firstNameError = document.querySelector('.firstName.error');
+        const lastNameError = document.querySelector('.lastName.error');
+        const emailError = document.querySelector('.email.error');
+        const passwordError = document.querySelector('.password.error');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          // get values
+          const firstName = form.firstName.value;
+          const lastName = form.lastName.value;
+          const email = form.email.value;
+          const password = form.password.value;
+
+          //reset errors
+          firstNameError.textContent = '';
+                lastNameError.textContent = '';
+                emailError.textContent = '';
+                passwordError.textContent = '';
+          
+          try {
+            const res = await fetch('/register', { 
+                method: 'POST', 
+                body: JSON.stringify({ email, password,firstName,lastName }),
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            console.log(data);
+            if(data.message){
+                firstNameError.textContent = data.message.firstName;
+                lastNameError.textContent = data.message.lastName;
+                if(data.message === 'Duplicated value: email'){
+                    emailError.textContent = 'That email is already registered';
+                }else{
+                    emailError.textContent = data.message.email;
+                }
+                passwordError.textContent = data.message.password;
+            }else if(data.user){
+                //redirect to home page
+                location.assign('/');
+            }
+          }
+           catch (err) {
+            console.log(err);
+          }
+        });
+      </script>
+</body>
+</html>

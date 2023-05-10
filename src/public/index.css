@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+}
+
+#projectsContainer {
+  background-color: gray;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: scroll;
+  width: 70%;
+  margin: 0 auto;
+}
+#singleProject {
+  background-color: lightgray;
+  margin: 10px auto;
+  width: 40%;
+  border-radius: 2%;
+}
+
+.removeTop {
+  margin-top: 0px;
+}
+
+.removeBottom {
+  margin-bottom: 0px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+}
+ul li {
+  padding: 10px;
+}
+ul li a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+ul li:hover {
+  background: rgb(170, 170, 170);
+}
+#addProjectNav {
+  padding-right: 0px;
+}
+
+ul {
+  margin: 0px 0px 10px 0px;
+}
+nav {
+  background: rgb(212, 212, 212);
+  position: sticky; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+
+.single {
+  text-decoration: none;
+  color: black;
+}
+
+#projectInfo {
+  width: 30%;
+  background-color: rgb(230, 230, 230);
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#updateDeleteButtons {
+  text-align: center;
+}
+
+#updateDeleteButtons a {
+  margin: 5px 5px 0px 5px;
+}
+
+#updateDeleteButtons a button {
+  font-size: 17px;
+}
+form {
+  text-align: center;
+}
+form input,
+form textarea {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+#submitButton {
+  font-size: 17px;
+  /* padding: 10px; */
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+#membersList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 40%;
+  margin: 0 auto;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+#singleMember {
+  display: flex;
+  margin-right: 15px;
+}
+
+#singleMember label {
+  margin-right: 10px;
+}

@@ -1,0 +1,16 @@
+<nav>
+  <ul>
+    <% if(user){%>
+    <li><a href="/">Home</a></li>
+    <li><a href="/my">My projects</a></li>
+    <li><a href="/member">Member projects</a></li>
+    <li><a href="/archived">Archived projects</a></li>
+    <li><a href="/addProject" id="addProjectNav">Add Project</a></li>
+    <li><a href="/logout" id="logout">Logout</a></li>
+    <%}else{ %>
+    <!-- prikazati samo ako user nije ulogiran -->
+    <li><a href="/register" id="register">Register</a></li>
+    <li><a href="/login" id="login">Login</a></li>
+    <%}%>
+  </ul>
+</nav>

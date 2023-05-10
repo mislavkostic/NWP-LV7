@@ -1,0 +1,50 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+            <form id="updateForm" data-doc="<%=project._id%>" action='/project/update/<%=project._id%>' , method='post'
+                , enctype='application/x-www-form-urlencoded'>
+                <h2>Update project</h2>
+                <% if(user._id == project.leaderId){%>
+                <label for="projectName">Project name:</label>
+                <input type="text" id="projectName" name="projectName" value="<%= project.projectName%>">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="30" rows="10"><%= project.description%></textarea>
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" min="0" value="<%= project.cost%>">
+                <%}%>
+                <label for="jobsDone">Jobs done:</label>
+                <textarea name="jobsDone" id="jobsDone" cols="30" rows="10"><%= project.jobsDone%></textarea>
+                <% if(user._id == project.leaderId){%>
+                    <div id="membersList">
+                        <% const renderedUsers = [];%>
+                        <% users.forEach(user=>{%>
+                            <div id="singleMember">
+                        <label for="member"><%= user.firstName%> <%= user.lastName%></label>
+                       
+                        <% project.members.forEach(member=>{ if(member._id.toString() == user._id.toString()){ if(!renderedUsers.includes(member._id.toString()) ) renderedUsers.push(user._id.toString()); %>
+                        <input type="checkbox" id="<%=user._id.toString()%>"" name="members[]" value="<%=user._id.toString()%>" checked>
+                        
+                        <%}else{%>
+                            <%if(!renderedUsers.includes(user._id.toString()) ){renderedUsers.push(user._id.toString());%>
+                            <input type="checkbox" id="<%=user._id.toString()%>"" name="members[]" value="<%=user._id.toString()%>" >
+                            
+                            <%}}})%>
+                    </div>
+                
+                        <%})%>
+                        
+                </div>
+                <label for="startDate">Start date:</label>
+                <input type="date" id="startDate" name="startDate"
+                    value="<%= project.startDate.toLocaleString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })%>">
+                <label for="endDate">End date:</label>
+                <input type="date" id="endDate" name="endDate"
+                    value="<%= project.endDate.toLocaleString('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })%>">
+                <input type="hidden" , value="PUT" , name="_method">
+                <%}%>
+                <button type="submit" id="submitButton">Update</button>
+            </form>
+    </body>
+
+    </html>

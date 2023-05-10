@@ -1,0 +1,52 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+        <h2>Project details:</h2>
+            <div id="projectInfo">
+                <p class="removeTop">
+                    <b>Project Name:</b>
+                    <%=project.projectName%>
+                </p>
+                <p>
+                    <b>Description:</b>
+                    <%=project.description%>
+                </p>
+                <p>
+                    <b>Jobs done:</b>
+                    <%=project.jobsDone%>
+                </p>
+                <p>
+                    <b>Members:</b>
+                    <%project.members.forEach(member=>{%>
+                    <%=member.firstName%> <%=member.lastName%>,
+                <%})%>
+                </p>
+
+                <p>
+                    <b>Start date:</b>
+                    <%= new Date(project.startDate).toLocaleDateString()%>
+                </p>
+                <p>
+                    <b>End date:</b>
+                    <%= new Date(project.endDate).toLocaleDateString()%>
+                </p>
+                <p class="removeBottom">
+                    <b>cost:</b>
+                    <%=project.cost%>
+                </p>
+                <% if(!project.archived){%>
+                <div id="updateDeleteButtons">
+                    <a href="/project/update/<%= project._id%>"><button>Update</button></a>
+                    <% if(user._id == project.leaderId){%>
+                    <a class="delete" data-doc="<%= project._id %>"><button>Delete</button></a>
+                    <a  href="/archive/<%=project._id%>" class="archive" "><button>Archive</button></a>
+                    <%}%>
+                </div>
+                <%}%>
+            </div>
+
+            <script src="/index.js"></script>
+    </body>
+
+    </html>

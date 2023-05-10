@@ -1,0 +1,16 @@
+<%- include("./partials/head.ejs") %>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <% if(typeof errorMessage == 'object'){
+   Object.values(errorMessage).forEach(message=>{%>
+
+    
+    <p>Message: <%= message%></p>
+    <% })%>
+    <% }else {%>
+    <p>Message: <%= errorMessage%></p>
+    <%}%>
+    <p>Type: <%= errorType%></p>
+    <p>Status: <%= status%></p>
+</body>
+</html>

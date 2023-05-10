@@ -1,0 +1,33 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+            <form action="/" method="post">
+                <h2>Add project</h2>
+                <label for="projectName">Project name:</label>
+                <input type="text" id="projectName" name="projectName" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" min="0" required>
+                <label for="jobsDone">Jobs done:</label>
+                <textarea name="jobsDone" id="jobsDone" cols="30" rows="10" required></textarea>
+                <p>Members: </p>
+                <div id="membersList">
+                <% users.forEach(user=>{%>
+                    <div id="singleMember">
+                <label for="member"><%= user.firstName%> <%= user.lastName%></label>
+                <input type="checkbox" id="member" name="members[]" value="<%=user._id%>">
+            </div>
+                <%})%>
+                </div>
+                <label for="startDate">Start date:</label>
+                <input type="date" id="startDate" name="startDate" required>
+                <label for="endDate">End date:</label>
+                <input type="date" id="endDate" name="endDate" required>
+
+                <button type="submit" id="submitButton">Create new project</button>
+            </form>
+
+    </body>
+    </html>

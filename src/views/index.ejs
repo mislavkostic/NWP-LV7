@@ -1,0 +1,13 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+
+           <%if(user){%>
+            <h2>You are currently logged in!, Feel free to create new projects or update existing ones</h2>
+            <%}else{%>
+                <h2>Please Register or Login</h2>
+                <%}%>
+    </body>
+
+    </html>

@@ -1,0 +1,40 @@
+<%- include("./partials/head.ejs") %>
+
+    <body>
+        <%- include("./partials/nav.ejs") %>
+            <h2>Archived Projects:</h2>
+            <% if (projects.length> 0) { %>
+                <div id="projectsContainer">
+                    <% projects.forEach(project=>{%>
+                        <a class="single" href="/project/<%= project._id %>">
+                        <div id="singleProject">
+                                <p class="removeTop">
+                                    <b>Project Name:</b>
+                                    <%=project.projectName%>
+                                </p>
+                                <p>
+                                    <b>Description:</b>
+                                    <%=project.description%>
+                                </p>
+                                <p>
+                                    <b>Start date:</b>
+                                    <%= new Date(project.startDate).toLocaleDateString()%>
+                                </p>
+                                <p>
+                                    <b>End date:</b>
+                                    <%= new Date(project.endDate).toLocaleDateString()%>
+                                </p>
+                                <p class="removeBottom">
+                                    <b>cost:</b>
+                                    <%=project.cost%>
+                                </p>
+                        </div>
+                    </a>
+                        <%})%>
+                </div>
+                <% } else { %>
+                    <p>There are no projects to display...</p>
+                    <% } %>
+    </body>
+
+    </html>
